@@ -1,0 +1,12 @@
+.idea
+node_modules
+.env
+coverage
+coverage.json
+typechain
+deployments
+
+#Hardhat files
+cache
+artifacts
+.DS_Store

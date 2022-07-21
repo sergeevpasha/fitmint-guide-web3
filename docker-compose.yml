@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  workspace:
+    container_name: "fitmint_web3"
+    build:
+      context: .docker/nodejs
+      dockerfile: Dockerfile
+    user: node
+    hostname: "fitmint-web3"
+    volumes:
+      - ./:/home/node/app
+    tty: true
+    networks:
+      - fitmint-guide-web3
+  hardhat-network:
+    container_name: "fitmint_web3_hardhat-network"
+    build:
+      context: .docker/hardhat-network
+      dockerfile: Dockerfile
+    ports:
+      - "${HARDHAT_NETWORK_PORT:-8545}:8545"
+    hostname: "fitmint_web3_hardhat-network"
+    tty: true
+    networks:
+      - fitmint-guide-web3
+
+networks:
+  fitmint-guide-web3:
+    driver: bridge
